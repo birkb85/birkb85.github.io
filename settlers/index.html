@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Projects</title>
+    <title>Settlers of Roll and Write</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -20,6 +20,16 @@
         crossorigin="anonymous"></script>
 
     <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- P5JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.min.js"></script>
+
+    <script src="global.js"></script>
+    <script src="sketch.js"></script>
+    <script src="grid.js"></script>
+    <script src="gridPos.js"></script>
+    <script src="hexagon.js"></script>
 </head>
 
 <body>
@@ -51,8 +61,26 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>Projects</h1>
-                <p>Welcome</p>
+                <h1>Settlers of Roll and Write</h1>
+                <p>Version: 0.7.0</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-primary btn-lg" onclick="generateBoard()">Generer nyt bræt</button>
+                <button type="button" class="btn btn-secondary btn-lg" onclick="saveBoard()">Download</button>
+                <button type="button" class="btn btn-secondary btn-lg" onclick="printBoard()">Print</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>Her under vises hvordan det tilfældige bræt ser ud:</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <!-- <div id="sketch-holder"></div> -->
+                <div class="zoom" id="sketch-holder"></div>
             </div>
         </div>
     </div>
