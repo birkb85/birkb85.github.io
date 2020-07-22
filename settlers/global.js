@@ -1,3 +1,5 @@
+let imgQRCode;
+
 const harborTypes = {
   NONE: 0,
   BRICK: 1,
@@ -378,9 +380,9 @@ function drawTitle() {
 
   text('Settlers\nof\nRoll\nand\nWrite', gridPos.x - (gridSize * 1.8), gridPos.y - (gridSize / 1.8));
 
-  gridPos = grid.getGridPos(0, 6);
-  textSize(gridSize / 4);
-  text('(work in\nprogress)', gridPos.x - (gridSize * 1.8), gridPos.y);
+  // gridPos = grid.getGridPos(0, 6);
+  // textSize(gridSize / 4);
+  // text('(work in\nprogress)', gridPos.x - (gridSize * 1.8), gridPos.y);
 }
 
 function drawDiceOdds() {
@@ -399,6 +401,10 @@ function drawDiceOdds() {
   text('2 & 12 = 3%\n3 & 11 = 6%\n4 & 10 = 8%\n5 & 9 = 11%\n6 & 8 = 14%\n    7 = 17%', gridPos.x - (gridSize / 2), gridPos.y + gridSize);
 }
 
+function drawQRCode() {
+  image(imgQRCode, 0, 0);
+}
+
 function generateBoard() {
   initGame();
 
@@ -414,6 +420,7 @@ function generateBoard() {
   }
   drawTitle();
   drawDiceOdds();
+  drawQRCode();
 }
 
 function saveBoard() {

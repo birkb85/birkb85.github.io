@@ -1,6 +1,10 @@
 // gridSize determins resolution of image.
 const gridSize = 330;//330; //50;
 
+function preload() {
+  imgQRCode = loadImage('qr_code.jpg');
+}
+
 function setup() {
   angleMode(DEGREES);
   pixelDensity(1);
