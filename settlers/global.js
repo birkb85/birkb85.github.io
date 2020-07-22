@@ -402,7 +402,17 @@ function drawDiceOdds() {
 }
 
 function drawQRCode() {
-  image(imgQRCode, 0, 0);
+  stroke('black');
+  strokeWeight(gridSize / 50);
+  fill('black');
+  textSize(gridSize / 3);
+  textAlign(LEFT, BASELINE);
+  textFont('monospace');
+  let gridPos = grid.getGridPos(6, 0);
+
+  text('Link til print:', gridPos.x - (gridSize / 2), gridPos.y - (gridSize / 4));
+
+  image(imgQRCode, gridPos.x - (gridSize / 2), gridPos.y);
 }
 
 function generateBoard() {
