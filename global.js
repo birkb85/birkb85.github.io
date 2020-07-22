@@ -29,6 +29,17 @@ const terrainTypes = {
   SEA: 7
 }
 
+let harborsOrg = [
+  harborTypes.BRICK,
+  harborTypes.LUMBER,
+  harborTypes.ORE,
+  harborTypes.GRAIN,
+  harborTypes.WOOL,
+  harborTypes.NORMAL,
+  harborTypes.NORMAL,
+  harborTypes.NORMAL,
+  harborTypes.NORMAL
+];
 let harbors = [
   harborTypes.BRICK,
   harborTypes.LUMBER,
@@ -39,6 +50,27 @@ let harbors = [
   harborTypes.NORMAL,
   harborTypes.NORMAL,
   harborTypes.NORMAL
+];
+let terrainsOrg = [
+  terrainTypes.HILLS,
+  terrainTypes.HILLS,
+  terrainTypes.HILLS,
+  terrainTypes.FOREST,
+  terrainTypes.FOREST,
+  terrainTypes.FOREST,
+  terrainTypes.FOREST,
+  terrainTypes.MOUNTAINS,
+  terrainTypes.MOUNTAINS,
+  terrainTypes.MOUNTAINS,
+  terrainTypes.FIELDS,
+  terrainTypes.FIELDS,
+  terrainTypes.FIELDS,
+  terrainTypes.FIELDS,
+  terrainTypes.PASTURE,
+  terrainTypes.PASTURE,
+  terrainTypes.PASTURE,
+  terrainTypes.PASTURE,
+  terrainTypes.DESERT
 ];
 let terrains = [
   terrainTypes.HILLS,
@@ -61,11 +93,17 @@ let terrains = [
   terrainTypes.PASTURE,
   terrainTypes.DESERT
 ];
+let numbersOrg = [2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12];
 let numbers = [2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12];
-// let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
 let canvas;
 let grid;
 let hexagons = [];
+
+function initGame() {
+  harbors = harborsOrg.slice();
+  terrains = terrainsOrg.slice();
+  numbers = numbersOrg.slice();
+}
 
 function shuffleGame() {
   shuffle(harbors, true);
@@ -359,6 +397,23 @@ function drawDiceOdds() {
 
   textSize(gridSize / 3);
   text('2 & 12 = 3%\n3 & 11 = 6%\n4 & 10 = 8%\n5 & 9 = 11%\n6 & 8 = 14%\n    7 = 17%', gridPos.x - (gridSize / 2), gridPos.y + gridSize);
+}
+
+function generateBoard() {
+  initGame();
+
+  shuffleGame();
+  createSea();
+  createLand();
+
+  // Draw one time
+  background(255);
+  // grid.draw();
+  for (let i = 0; i < hexagons.length; i++) {
+    hexagons[i].draw();
+  }
+  drawTitle();
+  drawDiceOdds();
 }
 
 function saveBoard() {
