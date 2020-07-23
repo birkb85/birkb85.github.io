@@ -410,7 +410,7 @@ function drawQRCode() {
   textFont('monospace');
   let gridPos = grid.getGridPos(5, 0);
   text('Link til nyt bræt:\nbirkb85.github.io/settlers/', gridPos.x + (gridSize / 8), gridPos.y - (gridSize / 4));
-  image(imgQRCode, gridPos.x + gridSize, gridPos.y + (gridSize / 4));
+  image(imgQRCode, gridPos.x + gridSize, gridPos.y + (gridSize / 4), imgQRCode.width / (gridSize / 75), imgQRCode.height / (gridSize / 75));
 }
 
 function drawPlayerAid() {

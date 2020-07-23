@@ -1,5 +1,5 @@
 // gridSize determins resolution of image.
-const gridSize = 300;//330; //50;
+const gridSize = 150;//330; //50;
 
 function preload() {
   imgQRCode = loadImage('qr_code.jpg');
