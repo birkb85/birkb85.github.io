@@ -93,7 +93,7 @@ class Hexagon {
 
     switch (this.terrainType) {
       case terrainTypes.HILLS:
-        text('Sten', this.x, this.y - (this.size / 2.8)); // Brick
+        text('Ler', this.x, this.y - (this.size / 2.8)); // Brick
         break;
       case terrainTypes.FOREST:
         text('Træ', this.x, this.y - (this.size / 2.8)); // Lumber
@@ -196,9 +196,9 @@ class Hexagon {
     if (this.harborDirection != harborDirections.NONE) {
       stroke('white');
       strokeWeight(this.size / 5);
-      let v1Begin = createVector(0, this.size / 2);
+      let v1Begin = createVector(0, this.size / 1.5);
       let v1End = createVector(0, this.size);
-      let v2Begin = createVector(0, this.size / 2);
+      let v2Begin = createVector(0, this.size / 1.5);
       let v2End = createVector(0, this.size);
       switch (this.harborDirection) {
         case harborDirections.NORTH_EAST:
@@ -282,8 +282,8 @@ class Hexagon {
       endShape(CLOSE);
 
       beginShape();
-      vertex(this.x - (25 * scale), this.y - (20 * scale));
-      vertex(this.x + (25 * scale), this.y - (20 * scale));
+      vertex(this.x - (15 * scale), this.y - (20 * scale));
+      vertex(this.x + (15 * scale), this.y - (20 * scale));
       vertex(this.x + (25 * scale), this.y + (10 * scale));
       vertex(this.x - (25 * scale), this.y + (10 * scale));
       endShape(CLOSE);
@@ -298,26 +298,32 @@ class Hexagon {
       switch (this.harborType) {
         case harborTypes.BRICK:
           // text('2:1\nBrick', this.x, this.y - (scale * 4));
-          text('2:1\nSten', this.x, this.y - (scale * 4));
+          text('2:1', this.x, this.y - (scale * 10));
+          text('Ler', this.x, this.y + (scale * 2));
           break;
         case harborTypes.LUMBER:
           // text('2:1\nLumber', this.x, this.y - (scale * 4));
-          text('2:1\nTræ', this.x, this.y - (scale * 4));
+          text('2:1', this.x, this.y - (scale * 10));
+          text('Træ', this.x, this.y + (scale * 2));
           break;
         case harborTypes.ORE:
           // text('2:1\nOre', this.x, this.y - (scale * 4));
-          text('2:1\nJern', this.x, this.y - (scale * 4));
+          text('2:1', this.x, this.y - (scale * 10));
+          text('Jern', this.x, this.y + (scale * 2));
           break;
         case harborTypes.GRAIN:
           // text('2:1\nGrain', this.x, this.y - (scale * 4));
-          text('2:1\nKorn', this.x, this.y - (scale * 4));
+          text('2:1', this.x, this.y - (scale * 10));
+          text('Korn', this.x, this.y + (scale * 2));
           break;
         case harborTypes.WOOL:
           // text('2:1\nWool', this.x, this.y - (scale * 4));
-          text('2:1\nUld', this.x, this.y - (scale * 4));
+          text('2:1', this.x, this.y - (scale * 10));
+          text('Uld', this.x, this.y + (scale * 2));
           break;
         case harborTypes.NORMAL:
-          text('?\n3:1', this.x, this.y - (scale * 4));
+          text('?', this.x, this.y - (scale * 10));
+          text('3:1', this.x, this.y + (scale * 2));
           break;
       }
     }

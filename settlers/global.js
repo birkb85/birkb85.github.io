@@ -117,7 +117,7 @@ function shuffleNumbers() {
   let shuffleValid = false;
   while (!shuffleValid) {
     shuffleValid = true;
-    
+
     shuffle(numbers, true);
 
     let desertIndex = -1;
@@ -405,14 +405,88 @@ function drawQRCode() {
   stroke('black');
   strokeWeight(gridSize / 50);
   fill('black');
-  textSize(gridSize / 3);
+  textSize(gridSize / 4);
   textAlign(LEFT, BASELINE);
   textFont('monospace');
-  let gridPos = grid.getGridPos(6, 0);
+  let gridPos = grid.getGridPos(5, 0);
+  text('Link til nyt bræt:\nbirkb85.github.io/settlers/', gridPos.x + (gridSize / 8), gridPos.y - (gridSize / 4));
+  image(imgQRCode, gridPos.x + gridSize, gridPos.y + (gridSize / 4));
+}
 
-  text('Link til print:', gridPos.x - (gridSize / 2), gridPos.y - (gridSize / 4));
+function drawPlayerAid() {
+  stroke('black');
+  strokeWeight(gridSize / 50);
+  fill('black');
+  textSize(gridSize / 2.5);
+  textAlign(LEFT, BASELINE);
+  textFont('monospace');
+  let posX = gridSize / 3;
+  let posY = gridSize * 12;
 
-  image(imgQRCode, gridPos.x - (gridSize / 2), gridPos.y);
+  text('Brug ressourcer til:', posX, posY);
+
+  textSize(gridSize / 3);
+  text(
+    'Vej (0vp):      Ler + Træ\n' +
+    'Landsby (1vp):  Ler + Træ + Korn + Uld\n' +
+    'Storby (2vp):   3*Jern + 2*Korn\n' +
+    'Udviklingskort: Jern + Korn + Uld'
+    , posX, posY + (gridSize / 2));
+
+  let scale = gridSize / 50;
+  strokeWeight(scale * 2);
+
+  posX = (gridSize / 3) + (gridSize * 7);
+
+  beginShape();
+  vertex(posX, posY + (83 * scale));
+  vertex(posX + (30 * scale), posY + (83 * scale));
+  endShape();
+
+  beginShape();
+  vertex(posX + (20 * scale), posY + (78 * scale));
+  vertex(posX + (30 * scale), posY + (83 * scale));
+  endShape();
+
+  beginShape();
+  vertex(posX + (20 * scale), posY + (88 * scale));
+  vertex(posX + (30 * scale), posY + (83 * scale));
+  endShape();
+
+  posX = (gridSize / 3) + (gridSize * 8);
+
+  beginShape();
+  vertex(posX, posY - (10 * scale));
+  vertex(posX, posY + (140 * scale));
+  endShape();
+
+  posX = (gridSize / 3) + (gridSize * 8) + (gridSize / 3);
+
+  strokeWeight(gridSize / 100);
+  textSize(gridSize / 4);
+
+  text(
+    'Rul terninger for kort (odds):\n' +
+    '2 & 3         = Byg 2 veje gratis (9%)\n' +
+    '4             = Monopol (8%)\n' +
+    // '  Sig en type ressource højt.\n' +
+    // '  Alle spillere giver dig alle\n' +
+    // '  deres ressourcer af den type.\n' +
+    '     Alle spillere giver dig alle deres\n' +
+    '     ressourcer af én type du bestemmer.\n' +
+    '5 & 6 & 7 & 8 = Ridder (56%)\n' +
+    '     Flyt røver og stjæl kort.\n' +
+    '9 & 10        = Byudvikling (1vp) (19%)\n' +
+    '11 & 12       = År med overflod (9%)\n' +
+    '     Tag to valgfri ressourcer.'
+    , posX, posY);
+
+  // strokeWeight(scale * 2);
+
+  // beginShape();
+  // vertex(gridSize / 3, posY + (110 * scale));
+  // vertex((gridSize / 3) + (gridSize * 8), posY + (110 * scale));
+  // endShape();
 }
 
 function generateBoard() {
@@ -423,7 +497,7 @@ function generateBoard() {
   createLand();
 
   // Draw one time
-  background(255);
+  background(255);//255 // TODO BB 2020-07-23. Change back to 255.
   // grid.draw();
   for (let i = 0; i < hexagons.length; i++) {
     hexagons[i].draw();
@@ -431,6 +505,7 @@ function generateBoard() {
   drawTitle();
   drawDiceOdds();
   drawQRCode();
+  drawPlayerAid();
 }
 
 function saveBoard() {

@@ -1,5 +1,5 @@
 // gridSize determins resolution of image.
-const gridSize = 330;//330; //50;
+const gridSize = 300;//330; //50;
 
 function preload() {
   imgQRCode = loadImage('qr_code.jpg');
@@ -13,7 +13,7 @@ function setup() {
 
   canvas = createCanvas(
     ceil(grid.getGridWidth() + (gridSize * 2.3)),
-    ceil(grid.getGridHeight()));
+    ceil(grid.getGridHeight() + (gridSize * 10)));
   canvas.parent('sketch-holder');
 
   generateBoard();
