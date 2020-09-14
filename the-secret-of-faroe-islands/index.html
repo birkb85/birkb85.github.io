@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>The Secret of Faroe Islands</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+		<canvas id="ctx" width="640" height="480" style="border:1px solid #000000;"></canvas>
+  </body>
+</html>
+
+<script>
+
+	const canvas = document.getElementById('ctx');
+	const ctx = canvas.getContext('2d');
+	const WIDTH = canvas.width;
+	const HEIGHT = canvas.height;
+
+	var backgroundImg = new Image();
+	backgroundImg.src = 'background.png';
+	backgroundImg.draw = function (){
+		ctx.drawImage(backgroundImg, 0, 0);
+	
+	}
+	
+	
+	var c1 = document.createElement('canvas');
+	c1.width = WIDTH;
+	c1.height = HEIGHT;
+	var ctx1 = c1.getContext('2d');
+	var moveableImg = new Image ();
+	moveableImg.onload = function() {
+		ctx1.drawImage(moveableImg,0,0);
+	};
+	moveableImg.src = 'moveable.png'
+	
+	
+	function getMousePos(canvas, evt) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+          x: evt.clientX - rect.left,
+          y: evt.clientY - rect.top
+        };
+    }
+	  
+	canvas.addEventListener('mousemove', function(evt) {
+        var mousePos = getMousePos(canvas, evt);
+		var imgData = ctx1.getImageData(mousePos.x, mousePos.y, 1, 1)
+		console.log(imgData.data[1]);
+    }, false);
+
+		
+	function gameLoop() {
+		ctx.clearRect(0,0,WIDTH,HEIGHT);
+		updatePosition();
+		draw();
+		requestAnimationFrame(gameLoop);
+		
+	}
+	
+	function updatePosition() {
+
+	}
+
+	function draw() {
+		backgroundImg.draw();
+
+	}
+
+	requestAnimationFrame(gameLoop)
+
+
+
+
+</script>
