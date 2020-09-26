@@ -67,32 +67,29 @@ function draw() {
 
     dirV = createVector(lookX, lookY);
     if (lookLeft) {
-        dirV = dirV.rotate(0.015);
+        dirV = dirV.rotate(0.02);
         lookX = dirV.x;
         lookY = dirV.y;
     }
     if (lookRight) {
-        dirV = dirV.rotate(-0.015);
+        dirV = dirV.rotate(-0.02);
         lookX = dirV.x;
         lookY = dirV.y;
     }
     // print("x: " + lookX + ", y: " + lookY);
 
-    // TODO BB 2020-09-26.
-    // Brug -HALF_PI til HALF_PI i stedet for -1 til 1.
-    // dirV.mult med cosinus (eller sinus, undersøg) til vinkel (lookZ).
     if (lookUp) {
-        lookZ -= 0.015;
-        if (lookZ < -0.9)
-            lookZ = -0.9;
+        lookZ -= 0.02;
+        if (lookZ < -HALF_PI + 0.1)
+            lookZ = -HALF_PI + 0.1;
     }
     if (lookDown) {
-        lookZ += 0.015;
-        if (lookZ > 0.9)
-            lookZ = 0.9;
+        lookZ += 0.02;
+        if (lookZ > HALF_PI - 0.1)
+            lookZ = HALF_PI - 0.1;
     }
     dirV = createVector(lookX, lookY);
-    dirV = dirV.mult(1 - abs(lookZ));
+    dirV = dirV.mult(cos(abs(lookZ)));
     // print("dirV.x: " + dirV.x + ", dirV.y: " + dirV.y + ", lookZ: " + lookZ);
 
     // Draw Camera
