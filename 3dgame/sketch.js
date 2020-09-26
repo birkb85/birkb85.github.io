@@ -6,13 +6,17 @@ let lookY = 0;
 let lookZ = 0;
 
 function setup() {
-    createCanvas(854, 480, WEBGL);
+    createCanvas(windowWidth, windowHeight, WEBGL);
+
+    // frameRate(60);
 }
 
 function draw() {
     background(200);
     ambientLight(128, 128, 128);
     directionalLight(255, 255, 255, 0.4, 0.4, 0.8);
+
+    // print(frameRate());
 
     // push();
     // textSize(32);
@@ -100,14 +104,14 @@ function draw() {
     stroke(0, 0, 0);
     fill(0, 255, 0);
     translate(0, -100);
-    box(50, 100, 20);
+    box(500, 100, 20);
     pop();
 
     push();
     stroke(0, 0, 0);
     fill(0, 255, 0);
     translate(0, -100, -400);
-    box(50, 100, 20);
+    box(500, 100, 20);
     pop();
 
     // Yellow Box
@@ -115,14 +119,14 @@ function draw() {
     stroke(0, 0, 0);
     fill(255, 255, 0);
     translate(0, 0);
-    box(50, 100, 20);
+    box(500, 100, 20);
     pop();
 
     push();
     stroke(0, 0, 0);
     fill(255, 255, 0);
     translate(0, 0, -400);
-    box(50, 100, 20);
+    box(500, 100, 20);
     pop();
 
     // Blue Box
@@ -130,13 +134,28 @@ function draw() {
     stroke(0, 0, 0);
     fill(0, 0, 255);
     translate(0, 100);
-    box(50, 100, 20);
+    box(500, 100, 20);
     pop();
 
     push();
     stroke(0, 0, 0);
     fill(0, 0, 255);
     translate(0, 100, -400);
-    box(50, 100, 20);
+    box(500, 100, 20);
+    pop();
+
+    // Purple Box
+    push();
+    stroke(0, 0, 0);
+    fill("#FF00E5");
+    translate(0, 160, -200);
+    box(500, 20, 420);
+    pop();
+
+    push();
+    stroke(0, 0, 0);
+    fill("#FF00E5");
+    translate(0, -160, -200);
+    box(500, 20, 420);
     pop();
 }
