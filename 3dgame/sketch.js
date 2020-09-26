@@ -6,7 +6,7 @@ let lookY = 0;
 let lookZ = 0;
 
 function setup() {
-    createCanvas(400, 400, WEBGL);
+    createCanvas(854, 480, WEBGL);
 }
 
 function draw() {
@@ -78,6 +78,9 @@ function draw() {
     }
     // print("x: " + lookX + ", y: " + lookY);
 
+    // TODO BB 2020-09-26.
+    // Brug -HALF_PI til HALF_PI i stedet for -1 til 1.
+    // dirV.mult med cosinus (eller sinus, undersøg) til vinkel (lookZ).
     if (lookUp) {
         lookZ -= 0.015;
         if (lookZ < -0.9)
