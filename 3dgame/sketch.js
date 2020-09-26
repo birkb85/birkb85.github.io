@@ -14,6 +14,14 @@ function draw() {
     ambientLight(128, 128, 128);
     directionalLight(255, 255, 255, 0.4, 0.4, 0.8);
 
+    // push();
+    // textSize(32);
+    // stroke(0, 0, 0);
+    // fill(0, 0, 0);
+    // text('Move: W A S D', 10, 30);
+    // text('Look: Up Down Left Right', 10, 50);
+    // pop();
+
     // Movement
     let walkForward = keyIsDown(87); // W
     let walkBack = keyIsDown(83); // S
@@ -47,8 +55,8 @@ function draw() {
         walk = true;
     }
     if (walk) {
-        posX += dirV.x;
-        posY += dirV.y;
+        posX += dirV.x * 4;
+        posY += dirV.y * 4;
     }
 
     // Look Direction
@@ -59,29 +67,30 @@ function draw() {
 
     dirV = createVector(lookX, lookY);
     if (lookLeft) {
-        dirV = dirV.rotate(0.01);
+        dirV = dirV.rotate(0.015);
         lookX = dirV.x;
         lookY = dirV.y;
     }
     if (lookRight) {
-        dirV = dirV.rotate(-0.01);
+        dirV = dirV.rotate(-0.015);
         lookX = dirV.x;
         lookY = dirV.y;
     }
     // print("x: " + lookX + ", y: " + lookY);
 
     if (lookUp) {
-        lookZ -= 0.01;
+        lookZ -= 0.015;
         if (lookZ < -0.9)
             lookZ = -0.9;
     }
     if (lookDown) {
-        lookZ += 0.01;
+        lookZ += 0.015;
         if (lookZ > 0.9)
             lookZ = 0.9;
     }
     dirV = createVector(lookX, lookY);
     dirV = dirV.mult(1 - abs(lookZ));
+    // print("dirV.x: " + dirV.x + ", dirV.y: " + dirV.y + ", lookZ: " + lookZ);
 
     // Draw Camera
     camera(posX, posY, posZ, posX + dirV.x, posY + dirV.y, posZ + lookZ, 0, 0, 1);
