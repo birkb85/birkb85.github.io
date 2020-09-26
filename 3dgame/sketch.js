@@ -97,7 +97,14 @@ function draw() {
     // print("dirV.x: " + dirV.x + ", dirV.y: " + dirV.y + ", lookZ: " + lookZ);
 
     // Draw Camera
-    camera(posX, posY, posZ, posX + dirV.x, posY + dirV.y, posZ + lookZ, 0, 0, 1);
+    camera(posX, posY, posZ, posX + dirV.x, posY + dirV.y, posZ + sin(lookZ), 0, 0, 1);
+
+    // push();
+    // stroke(0, 0, 0);
+    // fill(255, 0, 0);
+    // translate((posX + dirV.x) * 1000, (posY + dirV.y) * 1000, (posZ + sin(lookZ)) * 1000);
+    // sphere(10);
+    // pop();
 
     // Green Box
     push();
