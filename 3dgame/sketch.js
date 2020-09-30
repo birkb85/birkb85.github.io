@@ -8,7 +8,7 @@ let lookZ = 0;
 function setup() {
     createCanvas(windowWidth, windowHeight, WEBGL);
 
-    // frameRate(60);
+    // frameRate(30);
 }
 
 function draw() {
@@ -16,7 +16,7 @@ function draw() {
     ambientLight(128, 128, 128);
     directionalLight(255, 255, 255, 0.4, 0.4, 0.8);
 
-    // print(frameRate());
+    print(frameRate());
 
     // push();
     // textSize(32);
@@ -59,8 +59,8 @@ function draw() {
         walk = true;
     }
     if (walk) {
-        posX += dirV.x * 4;
-        posY += dirV.y * 4;
+        posX += dirV.x * 10;//4;
+        posY += dirV.y * 10;//4;
     }
 
     // Look Direction
@@ -71,40 +71,33 @@ function draw() {
 
     dirV = createVector(lookX, lookY);
     if (lookLeft) {
-        dirV = dirV.rotate(0.02);
+        dirV = dirV.rotate(0.04);//02);
         lookX = dirV.x;
         lookY = dirV.y;
     }
     if (lookRight) {
-        dirV = dirV.rotate(-0.02);
+        dirV = dirV.rotate(-0.04);//02);
         lookX = dirV.x;
         lookY = dirV.y;
     }
     // print("x: " + lookX + ", y: " + lookY);
 
     if (lookUp) {
-        lookZ -= 0.02;
+        lookZ -= 0.04;//02;
         if (lookZ < -HALF_PI + 0.1)
             lookZ = -HALF_PI + 0.1;
     }
     if (lookDown) {
-        lookZ += 0.02;
+        lookZ += 0.04;//02;
         if (lookZ > HALF_PI - 0.1)
             lookZ = HALF_PI - 0.1;
     }
     dirV = createVector(lookX, lookY);
     dirV = dirV.mult(cos(abs(lookZ)));
-    // print("dirV.x: " + dirV.x + ", dirV.y: " + dirV.y + ", lookZ: " + lookZ);
+    //print("dirV.x: " + dirV.x + ", dirV.y: " + dirV.y + ", lookZ: " + lookZ);
 
     // Draw Camera
     camera(posX, posY, posZ, posX + dirV.x, posY + dirV.y, posZ + sin(lookZ), 0, 0, 1);
-
-    // push();
-    // stroke(0, 0, 0);
-    // fill(255, 0, 0);
-    // translate((posX + dirV.x) * 1000, (posY + dirV.y) * 1000, (posZ + sin(lookZ)) * 1000);
-    // sphere(10);
-    // pop();
 
     // Green Box
     push();
@@ -165,4 +158,26 @@ function draw() {
     translate(0, -160, -200);
     box(500, 20, 420);
     pop();
+
+    // Red Boxes
+    let boxes = 0;
+    for (let i = 0; i < 50; i++) {
+        for (let e = 0; e < 50; e++) {
+            let boxX = 0 + (e * 100);
+            let boxY = 400 + (i * 100);
+            let boxZ = -100;
+            if (dist(posX, posY, posZ, boxX, boxY, boxZ) < 700) {
+                boxes ++;
+                push();
+                stroke(0, 0, 0);
+                fill(255, 0, 0);
+                translate(boxX, boxY, boxZ);
+                rotateX(frameCount * 0.01);
+                rotateY(frameCount * 0.01);
+                box(50, 50, 50);
+                pop();
+            }
+        }
+    }
+    print("Boxes: " + boxes);
 }
